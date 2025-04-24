@@ -114,111 +114,10 @@ All errors: $0.439, -0.072, 0.398, -0.934, 0.168$.
 ---
 
 ## <span style="color: #228B22;">4.Least Squares Method (OLS)</span>
-___
-
-# just for try this....
-
-
-# Ordinary Least Squares (OLS) Linear Regression
-
-Linear regression is a statistical method used to model the relationship between a dependent variable \( y \) and an independent variable \( x \). In simple linear regression, we try to fit a straight line that best represents the relationship between these two variables.
-
-The linear regression model is represented by the equation:
-
-$$
-y = \beta_0 + \beta_1 x + \epsilon
-$$
-
-Where:
-- \( y \) is the dependent variable.
-- \( x \) is the independent variable.
-- \( \beta_0 \) is the intercept of the regression line.
-- \( \beta_1 \) is the slope of the regression line.
-- \( \epsilon \) is the error term (or residual), representing the difference between the observed and predicted values.
-
----
-
-## Objective: Minimize the Sum of Squared Errors (SSE)
-
-The objective of linear regression is to find the values of \( \beta_0 \) and \( \beta_1 \) that minimize the **sum of squared errors (SSE)**, which is the sum of the squared differences between the observed values and the predicted values.
-
-The equation for the sum of squared errors is:
-
-$$
-SSE = \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 x_i))^2
-$$
-
-Where:
-- \( y_i \) is the observed value of the dependent variable.
-- \( x_i \) is the observed value of the independent variable.
-- \( \beta_0 + \beta_1 x_i \) is the predicted value.
-
----
-
-## Finding the Partial Derivatives
-
-To minimize the SSE, we take the **partial derivatives** of the SSE with respect to \( \beta_0 \) and \( \beta_1 \). We set these derivatives equal to zero to find the values of \( \beta_0 \) and \( \beta_1 \) that minimize the SSE.
-
-### Partial Derivative with respect to \( \beta_0 \):
-
-$$
-\frac{\partial SSE}{\partial \beta_0} = -2 \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i) = 0
-$$
-
-### Partial Derivative with respect to \( \beta_1 \):
-
-$$
-\frac{\partial SSE}{\partial \beta_1} = -2 \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i) x_i = 0
-$$
-
----
-
-## Solving the System of Equations
-
-After solving these partial derivatives, we obtain the following system of equations:
-
-1. $$ \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i) = 0 $$
-2. $$ \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i) x_i = 0 $$
-
-Solving this system of equations gives us the formulas for \( \beta_1 \) and \( \beta_0 \):
-
-- **Slope (\( \beta_1 \))**:
-
-  $$
-  \beta_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2}
-  $$
-
-  This formula computes the slope by considering how much the independent variable \( x \) and dependent variable \( y \) deviate from their respective means.
-
-- **Intercept (\( \beta_0 \))**:
-
-  $$
-  \beta_0 = \bar{y} - \beta_1 \bar{x}
-  $$
-
-  This formula calculates the intercept using the mean of the dependent variable \( y \) and the mean of the independent variable \( x \), adjusted by the slope.
-
----
-
-## Final Linear Regression Model
-
-Now that we have \( \beta_0 \) and \( \beta_1 \), we can write the final regression model as:
-
-$$
-y = \beta_0 + \beta_1 x
-$$
-
-This is the equation of the best-fitting line that minimizes the sum of squared errors, providing the optimal relationship between the dependent and independent variables.
-
-
-
-
-# end of trying.............
-___
 
 ### <span style="color: #FF8C00;">What is Least Squares?</span>
 
-The Least Squares method, also called Ordinary Least Squares (OLS), is the main way to find the best line in linear regression. It works by minimizing the **sum of squared errors (SSE)**:
+The Least Squares method, also called Ordinary Least Squares (OLS), is the main way `algorithm` to find the best line in linear regression. It works by **minimizing** the **sum of squared errors (SSE)**:
 
 $$ \text{SSE} = \sum_{i=1}^n (y_i - \hat{y}_i)^2 $$
 
@@ -255,53 +154,53 @@ $$
 \text{SSE} = \sum (y_i - \hat{y}_i)^2
 $$
 
-Substituting $\hat{y}_i = a_0 + a_1 x_i$, we get:
+Substituting $\hat{y}_i = \beta_0 + \beta_1 x_i$, we get:
 
 $$
-\text{SSE} = \sum (y_i - (a_0 + a_1 x_i))^2
+\text{SSE} = \sum (y_i - (\beta_0 + \beta_1 x_i))^2
 $$
 
 <span style="color: #FF8C00;">### Minimizing SSE</span>
 
-To find the coefficients $a_0$ and $a_1$, we take partial derivatives of SSE with respect to $a_0$ and $a_1$ and set them to zero.
+To find the coefficients $\beta_0$ and $\beta_1$, we take partial derivatives of SSE with respect to $\beta_0$ and $\beta_1$ and set them to zero.
 
-<span style="color: #FF8C00;">#### Partial Derivative with Respect to $a_0$:</span>
-
-$$
-\frac{\partial \text{SSE}}{\partial a_0} = \sum 2 (y_i - a_0 - a_1 x_i) (-1) = 0
-$$
+<span style="color: #FF8C00;">#### Partial Derivative with Respect to $\beta_0$:</span>
 
 $$
-\sum (y_i - a_0 - a_1 x_i) = 0
+\frac{\partial \text{SSE}}{\partial \beta_0} = \sum 2 (y_i - \beta_0 - \beta_1 x_i) (-1) = 0
 $$
 
 $$
-\sum y_i - n a_0 - a_1 \sum x_i = 0
+\sum (y_i - \beta_0 - \beta_1 x_i) = 0
 $$
 
 $$
-n a_0 + \sum x_i a_1 = \sum y_i \tag{1}
+\sum y_i - n \beta_0 - \beta_1 \sum x_i = 0
+$$
+
+$$
+n \beta_0 + \sum x_i \beta_1 = \sum y_i \tag{1}
 $$
 
 ![Deriv](https://i.imgur.com/Ni9dyc7.png)
 
 
-<span style="color: #FF8C00;">#### Partial Derivative with Respect to $a_1$:</span>
+<span style="color: #FF8C00;">#### Partial Derivative with Respect to $\beta_1$:</span>
 
 $$
-\frac{\partial \text{SSE}}{\partial a_1} = \sum 2 (y_i - a_0 - a_1 x_i) (-x_i) = 0
-$$
-
-$$
-\sum x_i (y_i - a_0 - a_1 x_i) = 0
+\frac{\partial \text{SSE}}{\partial \beta_1} = \sum 2 (y_i - \beta_0 - \beta_1 x_i) (-x_i) = 0
 $$
 
 $$
-\sum x_i y_i - a_0 \sum x_i - a_1 \sum x_i^2 = 0
+\sum x_i (y_i - \beta_0 - \beta_1 x_i) = 0
 $$
 
 $$
-\sum x_i a_0 + \sum x_i^2 a_1 = \sum x_i y_i \tag{2}
+\sum x_i y_i - \beta_0 \sum x_i - \beta_1 \sum x_i^2 = 0
+$$
+
+$$
+\sum x_i \beta_0 + \sum x_i^2 \beta_1 = \sum x_i y_i \tag{2}
 $$
 
 ![Deriv](https://i.imgur.com/vyJFoGP.png)
@@ -317,8 +216,8 @@ n & \sum x_i \\
 \sum x_i & \sum x_i^2
 \end{bmatrix}
 \begin{bmatrix}
-a_0 \\
-a_1
+\beta_0 \\
+\beta_1
 \end{bmatrix}
 =
 \begin{bmatrix}
